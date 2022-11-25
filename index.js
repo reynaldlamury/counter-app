@@ -7,18 +7,18 @@ const { div, button } = hh(h);
 
 const initModel = 0;
 
-function view(model) {
+function view(dispatching, model) {
   return div([
     // counter: data
     div({ className: 'mv2' }, `counter: ${model}`),
     button(
       {
         className: 'pv1 ph2 mr2',
-        onclick: () => console.log('plus'),
+        onclick: () => dispatching('plus'),
       },
       '+',
     ),
-    button({ className: 'pv1 ph2', onclick: () => console.log('minus') }, '-'),
+    button({ className: 'pv1 ph2', onclick: () => dispatching('minus') }, '-'),
   ]);
 }
 
@@ -33,6 +33,19 @@ function updateModel(msg, model) {
   }
 }
 
+function app(initModel, node) {
+  let theModel = initModel; // put attention here
+  let currentView = view(dispatch, theModel);
+  node.appendChild(currentView);
+
+  function dispatch(msg) {
+    theModel = updateModel(msg, theModel); // put attention here
+    const updatedView = view(dispatch, theModel);
+    node.replaceChild(updatedView, currentView);
+    currentView = updatedView;
+  }
+}
+
 const rootNode = document.getElementById('app');
 
-rootNode.appendChild(view(updateModel('plus', initModel)));
+app(initModel, rootNode);
