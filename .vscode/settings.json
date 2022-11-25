@@ -1,0 +1,6 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true
+  // "prettier.configPath": "C:\\Users\\reyna\\OneDrive\\Documents\\WEBSITE\\home\\powersite\\Functional-Programming-JS\\learn1\\.vscode\\.prettierrc"
+}

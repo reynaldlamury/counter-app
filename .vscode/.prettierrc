@@ -1,0 +1,27 @@
+{
+  "semi": true,
+  "overrides": [
+    {
+      "files": "*.html",
+      "options": {
+        "semi": true,
+        "tabWidth": 2
+      }
+    },
+    {
+      "files": "*.css",
+      "options": {
+        "semi": true,
+        "tabWidth": 2
+      }
+    },
+    {
+      "files": ["**/*.js", "*.json", "*.jsx"],
+      "options": {
+        "trailingComma": "es5",
+        "tabWidth": 2,
+        "singleQuote": true
+      }
+    }
+  ]
+}
