@@ -14,24 +14,32 @@ function view(dispatching, model) {
     button(
       {
         className: 'pv1 ph2 mr2',
-        onclick: () => dispatching('plus'),
+        onclick: () => dispatching(MSGS.ADD),
       },
       '+',
     ),
-    button({ className: 'pv1 ph2', onclick: () => dispatching('minus') }, '-'),
+    button(
+      { className: 'pv1 ph2', onclick: () => dispatching(MSGS.SUBSTRACT) },
+      '-',
+    ),
   ]);
 }
 
 function updateModel(msg, model) {
   switch (msg) {
-    case 'plus':
+    case MSGS.ADD:
       return model + 1;
-    case 'minus':
+    case MSGS.SUBSTRACT:
       return model - 1;
     default:
       return model;
   }
 }
+
+const MSGS = {
+  ADD: 'ADD',
+  SUBSTRACT: 'SUBSTRACT',
+};
 
 function app(initModel, node) {
   let theModel = initModel; // put attention here
