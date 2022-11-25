@@ -1,5 +1,6 @@
-import h from 'hyperscript';
 import hh from 'hyperscript-helpers';
+import { h, diff, patch } from 'virtual-dom';
+import createElement from 'virtual-dom/create-element';
 
 const { div, button } = hh(h);
 
@@ -44,12 +45,15 @@ const MSGS = {
 function app(initModel, node) {
   let theModel = initModel; // put attention here
   let currentView = view(dispatch, theModel);
-  node.appendChild(currentView);
+  let vDOMrootnode = createElement(currentView);
+  node.appendChild(vDOMrootnode);
 
   function dispatch(msg) {
     theModel = updateModel(msg, theModel); // put attention here
     const updatedView = view(dispatch, theModel);
-    node.replaceChild(updatedView, currentView);
+    const patches = diff(currentView, updatedView);
+    vDOMrootnode = patch(vDOMrootnode, patches);
+    // node.replaceChild(updatedView, currentView);
     currentView = updatedView;
   }
 }
